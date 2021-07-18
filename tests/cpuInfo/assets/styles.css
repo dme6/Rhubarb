@@ -1,0 +1,21 @@
+#cpu-info-div {
+    width: 50%;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: lightblue;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+#cpu-info-btn {
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: lightgreen;
+}
+
+#cpu-info-btn:hover {
+    background-color: limegreen;
+    cursor: pointer;
+}
