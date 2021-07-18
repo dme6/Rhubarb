@@ -1,6 +1,6 @@
 {
   "name": "@dme6/rhubarb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create desktop programs with web technologies.",
   "scripts": {
     "dev:server": "tsc-watch --project ./src/server --onSuccess \"node ./tests/cpuInfo/index.js\"",
