@@ -1,6 +1,8 @@
+type VariableParamsFunc = (...params: any[]) => void;
+
 interface Event {
     name: string;
-    func: Function;
+    func: VariableParamsFunc
 }
 
 export class EventEmitter {
@@ -16,7 +18,7 @@ export class EventEmitter {
         }
     }
 
-    on(name: string, func: Function) {
+    on(name: string, func: VariableParamsFunc) {
         this.events.push({ name, func });
     }
 

@@ -11,21 +11,29 @@ export class Window {
 
         this.config = Object.assign({
             windowSize: "800,600",
-            windowPosition: "0,0"
+            windowPosition: "0,0",
+            mainWindow: false
         }, config);
 
     }
 
     start() {
 
-        const loc = path.join(__dirname, "../../../browser/ungoogled-chromium-windows/chrome");
-        const locWArgs = `${loc} --window-size=${this.config.windowSize} --window-position=${this.config.windowPosition} --app=http://localhost:${this.config.server.getPort()}/${this.config.htmlPath}`;
+        const locWArgs = `${this.config.chromePath} --window-size=${this.config.windowSize} --window-position=${this.config.windowPosition} --app=http://localhost:${this.config.server.getPort()}/${this.config.htmlPath}`;
+
+        this.execute(locWArgs, () => {
+            if(this.config.mainWindow) {
+                this.config.server.stop();
+            }
+        });
+
+    }
+
+    private execute(locWArgs: string, onStop: () => void) {
 
         switch(os.type()) {
             case "Windows_NT": {
-                exec(`start ${locWArgs}`, () => {
-                    this.config.server.stop();
-                });
+                exec(`start ${locWArgs}`, onStop);
             }
         }
 

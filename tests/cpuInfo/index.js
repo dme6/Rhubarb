@@ -2,15 +2,20 @@ const os = require("os");
 const path = require("path");
 const { Server, Window } = require("../../dist/server/Rhubarb");
 
+const chromePath = path.join
+    (__dirname, "../../browser/ungoogled-chromium-windows/chrome");
+
 const server = new Server();
 
 server.on("ready", () => {
-    const window1 = new Window({
+    const win1 = new Window({
         htmlPath: path.join(__dirname, "./assets/index.html"),
+        mainWindow: true,
+        chromePath,
         server
     });
 
-    window1.start();
+    win1.start();
 });
 
 server.on("wsConnection", msgr => {
