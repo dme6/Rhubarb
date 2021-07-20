@@ -52,7 +52,7 @@ Client side (executed in browser):
 
 ```js
 
-import { Client } from "./node_modules/@dme6/rhubarb/dist/client/Rhubarb";
+import { Client } from "./node_modules/@dme6/rhubarb/dist/client/Rhubarb.js";
 
 const client = new Client();
 const mse = client.messageEmitter;
