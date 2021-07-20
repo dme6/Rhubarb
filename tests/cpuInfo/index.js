@@ -1,21 +1,21 @@
 const os = require("os");
 const path = require("path");
-const { Server, Window } = require("../../dist/server/Rhubarb");
+const fs = require("fs").promises;
+const { Server, BrowserInstance } = require("../../dist/server/Rhubarb");
 
 const chromePath = path.join
     (__dirname, "../../browser/ungoogled-chromium-windows/chrome");
 
-const server = new Server();
+const server = new Server({});
 
 server.on("ready", () => {
-    const win1 = new Window({
-        htmlPath: path.join(__dirname, "./assets/index.html"),
-        mainWindow: true,
+    const inst = new BrowserInstance({
+        htmlPath: path.join(__dirname, "./public/index.html"),
         chromePath,
         server
     });
 
-    win1.start();
+    inst.start();
 });
 
 server.on("wsConnection", msgr => {

@@ -22,7 +22,7 @@ export class Server extends EventEmitter {
 
         this.httpServer = http.createServer((req, res) => {
             if(req.url) {
-                new RequestHandler(res, req.url)
+                new RequestHandler(req, res, req.url)
                     .start();
             } else {
                 res.writeHead(400);
@@ -39,7 +39,7 @@ export class Server extends EventEmitter {
 
         const wss = new ws.Server({
             server: this.httpServer,
-            path: "/message"
+            path: "/messages"
         });
 
         wss.on("connection", sock => {

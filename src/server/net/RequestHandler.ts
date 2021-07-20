@@ -1,24 +1,29 @@
 import http from "http";
 import mime from "mime";
-import path from "path";
-import { promises as fs } from "fs";
+import fs from "fs";
 
 export class RequestHandler {
 
     constructor(
+        private req: http.IncomingMessage,
         private res: http.ServerResponse,
         private url: string
     ) {}
 
     start() {
-        this.handleFile();
+        switch(this.req.method) {
+            case "GET": {
+                this.handleFile();
+                break;
+            }
+        }
     }
 
-    private async handleFile() {
+    private handleFile() {
 
-        try {
+        const stream = fs.createReadStream(this.url.substring(1));
 
-            const file = await fs.readFile(this.url.substring(1), "utf-8");
+        stream.on("open", () => {
 
             const typeSplit = this.url.split(".");
             const type = mime.getType(typeSplit[typeSplit.length - 1]);
@@ -26,13 +31,17 @@ export class RequestHandler {
             this.res.writeHead(200, {
                 "Content-Type": type ?? "application/octet-stream"
             });
-            
-            this.res.end(file);
 
-        } catch(e) {
+            stream.pipe(this.res);
+
+        });
+
+        stream.on("error", () => {
+
             this.res.writeHead(404);
             this.res.end();
-        }
+
+        });
 
     }
 

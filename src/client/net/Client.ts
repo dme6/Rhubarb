@@ -8,7 +8,7 @@ export class Client extends EventEmitter {
 
     start() {
 
-        this.sock = new WebSocket(`ws://${location.host}/message`);
+        this.sock = new WebSocket(`ws://${location.host}/messages`);
 
         this.sock.onopen = () => {
             this.emit("wsConnection");

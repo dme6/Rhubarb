@@ -20,20 +20,19 @@ npm install @dme6/rhubarb
 Server side:
 ```js
 
-const { Server, Window } = require("@dme6/rhubarb/dist/server/Rhubarb");
+const { Server, BrowserInstance } = require("@dme6/rhubarb/dist/server/Rhubarb");
 
 const server = new Server({});
 
 server.on("ready", () => {
 
-    const win1 = new Window({
+    const inst = new BrowserInstance({
         htmlPath: "path/to/page.html",
-        mainWindow: true,
         chromePath: "path/to/browser.exe",
         server
     });
 
-    win1.start();
+    inst.start();
 
 });
 
