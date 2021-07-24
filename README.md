@@ -54,15 +54,14 @@ Client side (executed in browser):
 import { Client } from "./node_modules/@dme6/rhubarb/dist/client/Rhubarb.js";
 
 const client = new Client();
-const mse = client.messageEmitter;
 
-client.on("wsConnection", () => {
-    console.log("Connected.");
-});
+client.on("wsConnection", msgr => {
 
-mse.on("msg1", data => {
-    console.log(data);
-    client.send("msg2", data);
+    msgr.on("msg1", data => {
+        console.log(data);
+        msgr.send("msg2");
+    });
+    
 });
 
 client.start();

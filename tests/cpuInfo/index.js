@@ -1,6 +1,5 @@
 const os = require("os");
 const path = require("path");
-const fs = require("fs").promises;
 const { Server, BrowserInstance } = require("../../dist/server/Rhubarb");
 
 const chromePath = path.join

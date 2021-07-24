@@ -18,11 +18,22 @@ export class BrowserInstance {
 
     }
 
-    private execute(locWArgs: string, onStop: () => void) {
+    private execute(locWArgs: string, stopServer: () => void) {
 
         switch(os.type()) {
             case "Windows_NT": {
-                exec(`start ${locWArgs}`, onStop);
+                exec(`start ${locWArgs}`, stopServer);
+                break;
+            }
+            case "Linux":
+            case "Darwin": {
+                exec(`${locWArgs}`, stopServer);
+                break;
+            }
+            default: {
+                console.log("Operating system not supported.");
+                stopServer();
+                break;
             }
         }
 

@@ -20,7 +20,7 @@ export class Window {
     open() {
         
         this.window = open(this.config.url, this.config.name, `width=${this.config.width}, height=${this.config.height}, top=${this.config.top}, left=${this.config.left}`);
-
+        
     }
 
     close() {

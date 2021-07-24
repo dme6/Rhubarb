@@ -1,35 +1,16 @@
 import { EventEmitter } from "../util/EventEmitter.js";
-import { Message } from "../data/Message.js";
+import { Messenger } from "./Messenger.js";
 
 export class Client extends EventEmitter {
 
-    private sock?: WebSocket;
-    readonly messageEmitter = new EventEmitter();
-
     start() {
 
-        this.sock = new WebSocket(`ws://${location.host}/messages`);
+        const sock = new WebSocket(`ws://${location.host}/messages`);
 
-        this.sock.onopen = () => {
-            this.emit("wsConnection");
+        sock.onopen = () => {
+            this.emit("wsConnection", new Messenger(sock));
         }
 
-        this.sock.onmessage = msg => {
-            const pMsg = JSON.parse(msg.data) as Message;
-            this.messageEmitter.emit(pMsg.name, pMsg.data);
-        }
-
-    }
-
-    send(name: string, data: any = "") {
-        if(this.sock) {
-
-            this.sock.send(JSON.stringify({
-                name,
-                data
-            }));
-
-        }
     }
 
 }
