@@ -1,6 +1,6 @@
 {
   "name": "@dme6/rhubarb",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Create desktop programs with web technologies.",
   "scripts": {
     "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
@@ -16,10 +16,6 @@
   "author": "dme6",
   "license": "MIT",
   "repository": "dme6/rhubarb",
-  "exports": {
-    "./server": "./dist/server/Rhubarb",
-    "./client": "./dist/client/Rhubarb"
-  },
   "devDependencies": {
     "@types/mime": "^2.0.3",
     "@types/node": "^16.3.1",
