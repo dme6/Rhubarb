@@ -3,3 +3,4 @@ tests/
 browser/
 node_modules/
 .gitignore
+.tsconfig.base.json

@@ -1,6 +1,6 @@
 {
   "name": "@dme6/rhubarb",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Create desktop programs with web technologies.",
   "scripts": {
     "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
