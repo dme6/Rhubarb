@@ -2,13 +2,12 @@
 
 ![GitHub](https://img.shields.io/github/license/dme6/rhubarb?style=plastic)
 
-Create desktop programs with web technologies.
+A framework for creating desktop programs with web technologies by simplifying server and client communication.
 
 ## Requirements
 
 - A chromium-based web browser.
-- Npm.
-- Node.js 14 or later.
+- Node.js with npm.
 
 ## Installation
 
@@ -17,7 +16,7 @@ npm install @dme6/rhubarb
 ```
 
 ## Examples
-Server side:
+Server-side:
 ```js
 
 const { Server, BrowserInstance } = require("@dme6/rhubarb/dist/server/Rhubarb");
@@ -47,7 +46,7 @@ server.start();
 
 ```
 
-Client side (executed in browser):
+Client-side:
 
 ```js
 
